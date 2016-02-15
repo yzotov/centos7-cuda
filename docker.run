@@ -39,7 +39,7 @@ esac
 DEVS=`ls /dev/nvi* | sed -e "s/\(.*\)/ --device \1/"`
 
 LIBS=`for l in $NV_LIBS_CUDA ; do \
-	sudo ldconfig -p |grep -i lib$l.so|grep -i lib64 |sort -k 4.1 -u | \
+	ldconfig -p |grep -i lib$l.so|grep -i lib64 |sort -k 4.1 -u | \
 	sed -e "s/[^ ]* [^ ]* [^ ]* \(.*\)/\1/"|sed -e "s+/\(\([^/]*[/]\)*\)\([^/]*\)+/\1 \3+" | \
 	sort -k 2.1 -u | sed -e "s+\([^ ]*\) \([^ ]*\)+-v \1\2:$NV_LIBS_VOLUME/lib64/\2+"
       done`
